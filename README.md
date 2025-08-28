@@ -3,7 +3,7 @@
 Dual Motor Control with DRV8833 and Quadrature Encoders. Arduino's PID library is used to track the desired speed.
 It can also receive commands for desired speeds from Serial2.
 
-<video src="https://github.com/user-attachments/assets/7352acf8-bd2c-49ef-9ffd-7940c12b713f" width="500" controls></video>
+<video src="https://github.com/user-attachments/assets/7352acf8-bd2c-49ef-9ffd-7940c12b713f" width="500" autoplay loop controls></video>
 
 ## Tests
 
