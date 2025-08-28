@@ -68,7 +68,7 @@ double rpm_B_set   = 0.0;     // |target RPM| for B
 double pid_B_output = 0.0;    // PWM magnitude [0..255]
 
 // PID gains (start with a PI; set Kd=0, tune Kp then Ki)
-double Kp_A = 1.5, Ki_A = 5.0, Kd_A = 0.0;
+double Kp_A = 1.0, Ki_A = 4.0, Kd_A = 0.0;
 double Kp_B = 1.0, Ki_B = 4.0, Kd_B = 0.0;
 
 PID pidA(&rpm_A_input, &pid_A_output, &rpm_A_set, Kp_A, Ki_A, Kd_A, DIRECT);
