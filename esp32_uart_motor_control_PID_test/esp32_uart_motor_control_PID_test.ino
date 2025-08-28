@@ -125,15 +125,8 @@ void loop() {
   // Process UART commands (updates target_A_rpm / target_B_rpm)
   processUARTCommand();
 
-  // // Test changes
-  // if (millis() - last_time_led >= 10000) {
-  //   target_B_rpm = 150;
-  //   last_time_led = millis();
-  // } else if (millis() - last_time_led >= 5000) {
-  //   target_B_rpm = 0;
-  // }
-
-  target_B_rpm = update_rpm_target();
+  // Test 
+  //target_B_rpm = update_rpm_target();
 
   // Update measured speeds and run PIDs every SPEED_CALCULATION_INTERVAL
   if (millis() - last_time >= SPEED_CALCULATION_INTERVAL) {
@@ -175,27 +168,20 @@ void loop() {
       JetsonSerial.print(motor_B_rpm, 1); JetsonSerial.print(" / ");
       JetsonSerial.println(pwmB_signed);
 
-      // To USB debug
-      //Serial.print("A tgt/meas/PWM: ");
-      //Serial.print(target_A_rpm); Serial.print(",");
-      //Serial.print(motor_A_rpm, 1); Serial.print("\n");
-      //Serial.print(pwmA_signed);
-
-      // Serial.print(target_A_rpm); Serial.print(",");
-      // Serial.print(motor_A_rpm, 1); Serial.print(",");
+      // To USB debug - plot
+      Serial.print(target_A_rpm); Serial.print(",");
+      Serial.print(motor_A_rpm, 1); Serial.print(",");
       Serial.print(target_B_rpm); Serial.print(",");
       Serial.print(motor_B_rpm, 1); Serial.print("\n");
-
-      // Serial.print(" | B tgt/meas/PWM: ");
-      // Serial.print(target_B_rpm); Serial.print(" / ");
-      // Serial.print(motor_B_rpm, 1); Serial.print(" / ");
-      // Serial.println(pwmB_signed);
     }
   }
 
   delay(2);
 }
 
+/**
+* update_rpm_target(): Test PID by changing the target_rpm
+*/
 int update_rpm_target() {
   unsigned long current_time = millis();
 
@@ -212,16 +198,11 @@ int update_rpm_target() {
   // Update the target RPM
   target_rpm = direction * max_rpm * ramp_fraction;
   return target_rpm;
-  // Debugging output to monitor target RPM
-  //Serial.print("Target RPM: ");
-  //Serial.println(target_rpm);
 }
 
 void processUARTCommand() {
   while (JetsonSerial.available()) {
     char c = (char)JetsonSerial.read();
-    // echo to USB for debugging
-    Serial.write(c);
 
     if (c == '\n' || c == '\r') {
       if (inputString.length() > 0) stringComplete = true;
