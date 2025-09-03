@@ -5,6 +5,12 @@ It can also receive commands for desired speeds from Serial2.
 
 <video src="https://github.com/user-attachments/assets/7352acf8-bd2c-49ef-9ffd-7940c12b713f" width="500" autoplay loop controls></video>
 
+(Plot legend):
+
+blue/green: Desired speeds in RPM for motors A and B
+
+orange/yellow: Actual speeds in RPM of motors A and B
+
 ## Tests
 
 Tested on an ESP32-WROVER connected to a DRV8833 while receiving commands from a Jetson Nano.
